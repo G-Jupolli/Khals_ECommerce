@@ -1,5 +1,6 @@
 import React from 'react'
 import { useStateValue } from '../../StateProvider/StateProvider';
+import CheckoutProduct from '../CheckoutProduct/CheckoutProduct';
 import Subtotal from '../Subtotal/Subtotal';
 
 import './Checkout.css';
@@ -15,6 +16,16 @@ function Checkout() {
         <div className="checkout__title">
           <h2>Your shopping basket</h2>
         </div>
+
+        {basket.map((item) => (
+          <CheckoutProduct 
+            id={item.id}
+            title={item.title}
+            image={item.image}
+            price={item.price}
+            rating={item.rating}
+          />
+        ))}
 
       </div>
 
