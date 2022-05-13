@@ -1,10 +1,13 @@
 import './App.css';
 
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 
 import Home from '../Home/Home';
 import Checkout from '../Checkout/Checkout';
 import Header from '../Header/Header';
+import Login from '../Login/Login';
 
 
 function App() {
@@ -12,13 +15,15 @@ function App() {
     <Router>
       <div className="app">
 
-        <Header />
+        
 
         <Routes>
-          
-          <Route path='/checkout' element={<Checkout />} />
 
-          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+
+          <Route path='/checkout' element={<><Header /> <Checkout /></>} />
+
+          <Route path='/' element={<><Header /> <Home /></>} />
 
         </Routes>
         
