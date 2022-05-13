@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './Header.css';
 
@@ -7,9 +7,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 import { useStateValue } from '../../StateProvider/StateProvider';
+import { auth } from '../../Util/firebase';
 
 function Header() {
-  const [{ basket }] = useStateValue();
+  const [{ basket, user }] = useStateValue();
+  const navigate = useNavigate();
+
+  const handleAuth = () => {
+    if (user) {
+      auth.signOut();
+    }
+  }
 
   return (
     <div className='header' >
@@ -29,13 +37,15 @@ function Header() {
       <div className="header__nav" >
 
         {/* Login */}
-        <Link to='/login' >
-          <div className="header__option" >
+        <Link to={!user && '/login'}>
+          <div className="header__option" onClick={handleAuth}>
             <span className="header__optionLineOne" >
               Hello
             </span>
             <span className="header__optionLinetwo" >
-              Sign in
+              {
+                user ? 'Sign Out' : 'Sign In'
+              }
             </span>
           </div>
         </Link>

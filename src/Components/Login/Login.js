@@ -1,18 +1,23 @@
-import { AlignHorizontalLeftRounded } from '@mui/icons-material';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import { auth } from '../../Util/firebase';
 
 import './Login.css';
 
 function Login() {
-    const {email, setEmail} = useState('');
-    const {password, setPassword} = useState('');
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const signIn = (e) => {
         e.preventDefault();
 
-        // Link to database login
+        auth
+         .signInWithEmailAndPassword(email, password)
+         .then(auth => {
+            navigate('/');
+         })
+         .catch(err => alert(err.message))
     }
 
     const register = (e) => {
@@ -22,8 +27,11 @@ function Login() {
             .createUserWithEmailAndPassword(email, password)
             .then((auth) => {
                 console.log(auth)
+                if (auth) {
+                    navigate('/')
+                }
             })
-            .catch(err => AlignHorizontalLeftRounded(err.message))
+            .catch(err => alert(err.message))
     }
 
   return (

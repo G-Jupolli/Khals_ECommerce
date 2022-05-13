@@ -10,3 +10,11 @@
     padding: 10px;
     border-bottom: 1px solid lightgray;
 }
+
+.checkout__left {
+    width: 50%;
+}
+
+.checkout__right {
+    width: 50%;
+}
