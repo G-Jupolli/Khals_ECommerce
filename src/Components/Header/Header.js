@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Header.css';
 
@@ -11,7 +11,6 @@ import { auth } from '../../Util/firebase';
 
 function Header() {
   const [{ basket, user }] = useStateValue();
-  const navigate = useNavigate();
 
   const handleAuth = () => {
     if (user) {
@@ -40,7 +39,7 @@ function Header() {
         <Link to={!user && '/login'}>
           <div className="header__option" onClick={handleAuth}>
             <span className="header__optionLineOne" >
-              Hello
+              Hello, {user?.email}
             </span>
             <span className="header__optionLinetwo" >
               {
