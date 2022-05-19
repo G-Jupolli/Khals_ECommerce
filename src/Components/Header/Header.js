@@ -39,7 +39,7 @@ function Header() {
         <Link to={!user && '/login'}>
           <div className="header__option" onClick={handleAuth}>
             <span className="header__optionLineOne" >
-              Hello, {user?.email}
+              Hello, {!user ? "Guest" : user.email}
             </span>
             <span className="header__optionLinetwo" >
               {
@@ -56,16 +56,6 @@ function Header() {
           </span>
           <span className="header__optionLinetwo" >
             Orders
-          </span>
-        </div>
-
-        {/* Prime */}
-        <div className="header__option" >
-          <span className="header__optionLineOne" >
-            Your
-          </span>
-          <span className="header__optionLinetwo" >
-            Prime
           </span>
         </div>
 
