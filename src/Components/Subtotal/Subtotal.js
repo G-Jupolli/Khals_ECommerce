@@ -1,6 +1,7 @@
 import React from 'react'
 
 import CurrencyFormat from 'react-currency-format';
+import { Link } from 'react-router-dom';
 import { getBasketTotal } from '../../StateProvider/reducer';
 
 import { useStateValue } from '../../StateProvider/StateProvider';
@@ -14,15 +15,9 @@ function Subtotal() {
     <div className="subtotal">
         <CurrencyFormat 
             renderText={(value) => (
-                <>
-                    <p>
-                        Subtotal ({basket.length} items): <strong>{value}</strong>
-                    </p>
-                    <small className="subtotal__gift">
-                        <input type="chatbox" /> 
-                        This order contains a gift
-                    </small>
-                </>
+                <p>
+                    Subtotal ({basket.length} items): <strong>{value}</strong>
+                </p>
             )}
             decimalScale={2}
             value={getBasketTotal(basket)}
@@ -31,7 +26,9 @@ function Subtotal() {
             prefix={"£"}
         />
 
-        <button>Proceed to Checkout</button>
+        <Link to='/payment' >
+            <button className='subtotal__button' >Proceed to Checkout</button>
+        </Link>
 
     </div>
   )
