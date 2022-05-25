@@ -1,10 +1,22 @@
 import React from 'react'
 
 import Product from '../Product/Product'
+import { products } from './../../Util/products/products'
 
 import './Home.css'
 
 function Home() {
+    const renderProduct = (i) => {
+        return <Product 
+            key = {`PROD-${products[i].id}`}
+            id = {products[i].id}
+            title = {products[i].title}
+            price = {products[i].price}
+            rating = {products[i].rating}
+            image = {products[i].image}
+            />
+    }
+
   return (
     <div className="home">
         <div className="home__container">
@@ -15,54 +27,42 @@ function Home() {
             </div>
 
             <div className="home__row">
-                <Product 
-                    id="dfgdfg5ege"
-                    title="something anout a product which is it's data"
-                    price={15.50}
-                    rating={5}
-                    image="https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?resize=738%2C320&ssl=1"
-                />
-                <Product 
-                    id="g3h47q68ifgfq3476"
-                    title="something anout a product which is it's data"
-                    price={15.50}
-                    rating={5}
-                    image="https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?resize=738%2C320&ssl=1"
-                />
-                <Product 
-                    id="85v94n745n879"
-                    title="something anout a product which is it's data"
-                    price={15.50}
-                    rating={5}
-                    image="https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?resize=738%2C320&ssl=1"
-                />
+                {
+                    renderProduct(0)
+                }
+                {
+                    renderProduct(1)
+                }
+                {
+                    renderProduct(2)
+                }
             </div>
 
             <div className="home__row">
-                <Product 
-                    id="h6h65eh6e56h"
-                    title="something anout a product which is it's data"
-                    price={15.50}
-                    rating={5}
-                    image="https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?resize=738%2C320&ssl=1"
-                />
-                <Product 
-                    id="4ta4ta4ta4t"
-                    title="something anout a product which is it's data"
-                    price={15.50}
-                    rating={5}
-                    image="https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?resize=738%2C320&ssl=1"
-                />
+                {
+                    renderProduct(3)
+                }
+                {
+                    renderProduct(4)
+                }
             </div>
 
             <div className="home__row">
-                <Product 
-                    id="4u65764hjswr5sy5r"
-                    title="something anout a product which is it's data"
-                    price={15.50}
-                    rating={5}
-                    image="https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?resize=738%2C320&ssl=1"
-                />
+                {
+                    renderProduct(5)
+                }
+            </div>
+
+            <div className="home__row">
+                {
+                    renderProduct(6)
+                }
+                {
+                    renderProduct(7)
+                }
+                {
+                    renderProduct(8)
+                }
             </div>
 
 
