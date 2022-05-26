@@ -15,9 +15,6 @@ app.use(cors({ origin: true }));
 app.use(express.json());
 
 // API routes
-app.get('/', (req, res) => {
-    res.status(200).send('backend active')
-});
 
 app.post('/payments/create', async (req, res) => {
     const total = req.query.total;
@@ -34,5 +31,3 @@ app.post('/payments/create', async (req, res) => {
 
 // Listen command
 exports.api = functions.https.onRequest(app);
-
-//http://localhost:5001/e-commerce-app-af4ee/us-central1/api
