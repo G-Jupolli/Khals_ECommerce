@@ -14,7 +14,7 @@ function Checkout() {
       <div className="checkout__left">
 
         <div className="checkout__title">
-          <h3>Hello, {user?.email}</h3>
+          <h3>Hello, {user?.email.replace('@gmail.com','')}</h3>
           <h2>Your shopping basket</h2>
         </div>
 

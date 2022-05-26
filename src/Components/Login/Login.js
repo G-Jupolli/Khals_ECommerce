@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link, useNavigate  } from 'react-router-dom';
 import { auth } from '../../Util/firebase';
 
+import Logo from './../../Util/Logo.png';
+
 import './Login.css';
 
 function Login() {
@@ -37,7 +39,7 @@ function Login() {
   return (
     <div className='login'>
         <Link to='/'>
-            <div className='login__logo'>LOGO</div>
+            <img className='login__logo' src={Logo} alt='Acerune Isle' />
         </Link>
 
         <div className='login__container' >
@@ -63,6 +65,10 @@ function Login() {
             <button className='login__registerButton' onClick={register} >
                 Create Account
             </button>
+
+            <small>You can create an account by entering an email and password or use the test account:</small>
+            <small>Email: test123@gmail.com</small>
+            <small>Password: password</small>
 
         </div>
     </div>

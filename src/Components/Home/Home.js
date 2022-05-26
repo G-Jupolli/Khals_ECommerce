@@ -23,7 +23,7 @@ function Home() {
 
             {/* Banner */}
             <div className="home__banner">
-                Banner
+                None of these items are purchaseable, this is an example site. YOU ARE NOT BUYING ANYTHING!
             </div>
 
             <div className="home__row">

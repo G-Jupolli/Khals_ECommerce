@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import Logo from './../../Util/Logo.png';
 
 import { useStateValue } from '../../StateProvider/StateProvider';
 import { auth } from '../../Util/firebase';
@@ -22,7 +23,7 @@ function Header() {
 
       {/* logo */}
       <Link to='/'>
-        <div className="header__logo">LOGO</div>
+        <img className='header__logo' src={Logo} alt='Acerune Isle' />
       </Link>
 
       {/* nav */}
@@ -32,7 +33,7 @@ function Header() {
         <Link to={!user && '/login'}>
           <div className="header__option" onClick={handleAuth}>
             <span className="header__optionLineOne" >
-              Hello, {!user ? "Guest" : user.email}
+              Hello, {!user ? "Guest" : user.email.replace('@gmail.com', '')}
             </span>
             <span className="header__optionLinetwo" >
               {

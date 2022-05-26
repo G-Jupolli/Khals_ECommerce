@@ -90,7 +90,7 @@ function Payment() {
                     <h3>Delivery Adress</h3>
                 </div>
                 <div className='payment__adress'>
-                    <p>{user?.email}</p>
+                    <p>{user?.email.replace('@gmail.com','')}</p>
                     <p>123 road road</p>
                     <p>town city, country</p>
                 </div>
@@ -134,6 +134,8 @@ function Payment() {
                                 thousandSeparator={true}
                                 prefix={"£"}
                             />
+
+                            <small>(To use the test number, repeatedly enter '42' to fill with 42424242424242424242)</small><br />
 
                             <button disabled={processing || disabled || succeeded} >
                                 <span>{processing ? <p>Processing</p> : 'Buy Now'}</span>
