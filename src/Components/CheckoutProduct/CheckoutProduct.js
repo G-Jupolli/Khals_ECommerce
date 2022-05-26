@@ -13,7 +13,7 @@ import FOACap from './../../Util/products/images/FOACap.jpg';
 
 import './CheckoutProduct.css';
 
-function CheckoutProduct({ id, image, title, price, rating}) {
+function CheckoutProduct({ id, image, title, price, rating, hideButton }) {
   const [{}, dispatch] = useStateValue();
 
   const removeFromBasket = () => {
@@ -26,23 +26,25 @@ function CheckoutProduct({ id, image, title, price, rating}) {
   const renderImage = () => {
     switch(image) {
       case 'Book1':
-        return <img className="checkoutProduct__image" src={Book1} />;
+        return <img className="checkoutProduct__image" src={Book1} alt='Book1' />;
       case 'Book2':
-        return <img className="checkoutProduct__image" src={Book2} />;
+        return <img className="checkoutProduct__image" src={Book2} alt='Book2'/>;
       case 'Book3':
-        return <img className="checkoutProduct__image" src={Book3} />;
+        return <img className="checkoutProduct__image" src={Book3} alt='Book3'/>;
       case 'FOAFacemask':
-        return <img className="checkoutProduct__image" src={FOAFacemask} />;
+        return <img className="checkoutProduct__image" src={FOAFacemask} alt='FOAFacemask'/>;
       case 'AIFacemask':
-        return <img className="checkoutProduct__image" src={AIFacemask} />;
+        return <img className="checkoutProduct__image" src={AIFacemask} alt='AIFacemask'/>;
       case 'EbonsFang':
-        return <img className="checkoutProduct__image" src={EbonsFang} />;
+        return <img className="checkoutProduct__image" src={EbonsFang} alt='EbonsFang'/>;
       case 'FOATeeShirt':
-        return <img className="checkoutProduct__image" src={FOATeeShirt} />;
+        return <img className="checkoutProduct__image" src={FOATeeShirt} alt='FOATeeShirt'/>;
       case 'FOAHoodie':
-        return <img className="checkoutProduct__image" src={FOAHoodie} />;
+        return <img className="checkoutProduct__image" src={FOAHoodie} alt='FOAHoodie'/>;
       case 'FOACap':
-        return <img className="checkoutProduct__image" src={FOACap} />;
+        return <img className="checkoutProduct__image" src={FOACap} alt='FOACap'/>;
+      default :
+        return (<p>image not found</p>);
     }
   }
 
@@ -66,7 +68,13 @@ function CheckoutProduct({ id, image, title, price, rating}) {
         <p>⭐{rating}/5</p>
         </div>
 
-        <button className='checkoutProduct__button' onClick={removeFromBasket}>Remove from Basket</button>
+        {
+          !hideButton && (
+            <button className='checkoutProduct__button' onClick={removeFromBasket}>Remove from Basket</button>
+          )
+        }
+
+        
 
       </div>
 

@@ -34,23 +34,25 @@ function Product ({ id, title, image, price, rating }) {
   const renderImage = () => {
     switch(image) {
       case 'Book1':
-        return <img className="product__image" src={Book1} />;
+        return <img className="product__image" src={Book1} alt='Book1' />;
       case 'Book2':
-        return <img className="product__image" src={Book2} />;
+        return <img className="product__image" src={Book2} alt='Book2'/>;
       case 'Book3':
-        return <img className="product__image" src={Book3} />;
+        return <img className="product__image" src={Book3} alt='Book3'/>;
       case 'FOAFacemask':
-        return <img className="product__image" src={FOAFacemask} />;
+        return <img className="product__image" src={FOAFacemask} alt='FOAFacemask'/>;
       case 'AIFacemask':
-        return <img className="product__image" src={AIFacemask} />;
+        return <img className="product__image" src={AIFacemask} alt='AIFacemask'/>;
       case 'EbonsFang':
-        return <img className="product__image" src={EbonsFang} />;
+        return <img className="product__image" src={EbonsFang} alt='EbonsFang'/>;
       case 'FOATeeShirt':
-        return <img className="product__image" src={FOATeeShirt} />;
+        return <img className="product__image" src={FOATeeShirt} alt='FOATeeShirt'/>;
       case 'FOAHoodie':
-        return <img className="product__image" src={FOAHoodie} />;
+        return <img className="product__image" src={FOAHoodie} alt='FOAHoodie'/>;
       case 'FOACap':
-        return <img className="product__image" src={FOACap} />;
+        return <img className="product__image" src={FOACap} alt='FOACap'/>;
+      default :
+        return (<p>image not found</p>)
     }
   }
 

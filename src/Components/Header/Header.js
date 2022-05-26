@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import './Header.css';
 
-import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 import { useStateValue } from '../../StateProvider/StateProvider';
@@ -26,12 +25,6 @@ function Header() {
         <div className="header__logo">LOGO</div>
       </Link>
 
-      {/* Search */}
-      <div className="header__search" >
-        <input className="header__searchInput" />
-        <SearchIcon className="header__searchIcon" />
-      </div>
-
       {/* nav */}
       <div className="header__nav" >
 
@@ -50,14 +43,16 @@ function Header() {
         </Link>
 
         {/* Orders */}
-        <div className="header__option" >
-          <span className="header__optionLineOne" >
-            Returns
-          </span>
-          <span className="header__optionLinetwo" >
-            Orders
-          </span>
-        </div>
+        <Link to='/orders' >
+          <div className="header__option" >
+            <span className="header__optionLineOne" >
+              Returns
+            </span>
+            <span className="header__optionLinetwo" >
+              Orders
+            </span>
+          </div>
+        </Link>
 
         {/* Basket */}
         <Link to='/checkout'>

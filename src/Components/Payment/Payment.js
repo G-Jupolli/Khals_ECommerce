@@ -9,9 +9,10 @@ import { useStateValue } from '../../StateProvider/StateProvider';
 import CheckoutProduct from '../CheckoutProduct/CheckoutProduct';
 
 import './Payment.css';
+import { db } from '../../Util/firebase';
 
 function Payment() {
-    const [{ basket, user }] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
 
     const stripe = useStripe();
     const elements = useElements();
@@ -28,32 +29,48 @@ function Payment() {
         const getClientSecret = async () => {
             const response = await axios({
                 method: 'POST',
-                url: `/payment/create?total=${getBasketTotal(basket) * 100}`,
+                url: `/payments/create?total=${Math.round(getBasketTotal(basket) * 100)}`,
             });
-
             setClientSecret(response.data.clientSecret)
         }
         getClientSecret();
-    }, [basket])
+    }, [basket]);
 
     const handlechange = (e) => {
         setDisabled(e.empty);
         setError(e.error ? e.error.message : '');
     };
 
+    console.log('user >>>>>>', user)
+
     const handlesubmit = async (e) => {
         e.preventDefault();
         setProcessing(true);
 
-        const payload = await stripe.confirmCardPayment(clientSecret, {
+        await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement),
             }
         }).then (({ paymentIntent }) => {
 
+            db
+                .collection('users')
+                .doc(user?.uid)
+                .collection('orders')
+                .doc(paymentIntent.id)
+                .set({
+                    basket:basket,
+                    amount: paymentIntent.amount,
+                    created: paymentIntent.created,
+                })
+
             setSucceeded(true);
             setError(null);
             setProcessing(false);
+
+            dispatch({
+                type: 'EMPTY_BASKET'
+            })
 
             navigate('/orders', { replace: true })
         })
@@ -91,6 +108,7 @@ function Payment() {
                             image={item.image}
                             price={item.price}
                             rating={item.rating}
+                            hideButton
                         />
                     ))}
                 </div>

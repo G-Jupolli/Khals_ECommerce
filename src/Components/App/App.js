@@ -16,15 +16,15 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
 import { useStateValue } from '../../StateProvider/StateProvider';
+import Orders from '../Orders/Orders';
 
 const promise = loadStripe(Stripe.key);
 
 function App() {
-  const [dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-      console.log('THE USER IS >>> ', authUser);
 
       if (authUser) {
         dispatch({
@@ -55,6 +55,8 @@ function App() {
           <Route path='/payment' element={
             <><Header /> <Elements stripe={promise} ><Payment /></Elements></>
           } />
+
+          <Route path='/orders' element={<><Header /> <Orders /></>} />
 
           <Route path='/' element={<><Header /> <Home /></>} />
 

@@ -1,9 +1,38 @@
 const functions = require("firebase-functions");
+const express = require("express");
+const cors = require("cors");
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+require('dotenv').config();
+const stripe = require('stripe')('sk_test_51L0qMeDLsIlVRysabqfSqS5iejTlR5K3mwgPEfHzKZhQOKb3KfdSpySpONGIJRYxevbytbwtd9n9pTC68tRNdgbJ00BQXiNBBK');
+
+// API
+
+// App config
+const app = express();
+
+// Middlewares
+app.use(cors({ origin: true }));
+app.use(express.json());
+
+// API routes
+app.get('/', (req, res) => {
+    res.status(200).send('backend active')
+});
+
+app.post('/payments/create', async (req, res) => {
+    const total = req.query.total;
+
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: total,
+        currency: 'gbp',
+    })
+
+    res.status(201).send({
+        clientSecret: paymentIntent.client_secret,
+    })
+})
+
+// Listen command
+exports.api = functions.https.onRequest(app);
+
+//http://localhost:5001/e-commerce-app-af4ee/us-central1/api
